@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>List of teachers</title>
+</head>
+<body>
+{% block content %}
+
+<h1>Teachers</h1>
+
+<ul>
+ {% for teacher in teachers %}
+  <li>{{ teacher.first_name }} {{ teacher.last_name }}</li>
+ {% endfor %}
+</ul>
+
+{% endblock %}
+
+</body>
+</html>
