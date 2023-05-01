@@ -5,7 +5,7 @@ from .forms import TeacherForm
 from .models import Teacher
 
 
-def get_teacher(request):
+def save_teacher(request):
     if request.method == "POST":
         form = TeacherForm(request.POST)
         if form.is_valid():

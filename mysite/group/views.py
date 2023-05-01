@@ -5,7 +5,7 @@ from .forms import GroupForm
 from .models import Group
 
 
-def get_group(request):
+def save_group(request):
     if request.method == "POST":
         form = GroupForm(request.POST)
         if form.is_valid():
