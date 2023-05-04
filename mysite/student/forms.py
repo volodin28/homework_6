@@ -16,6 +16,10 @@ class StudentForm(ModelForm):
         widget=forms.CheckboxSelectMultiple
     )
 
+    def __init__(self, *args, **kwargs):
+        super(StudentForm, self).__init__(*args, **kwargs)
+        self.fields['groups'].required = False
+
     def clean_first_name(self):
         first_name = self.cleaned_data['first_name']
         if len(first_name) > 100:
