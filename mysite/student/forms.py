@@ -1,13 +1,20 @@
+from django import forms
 from django.core.exceptions import ValidationError
 from django.forms import ModelForm
 
 from .models import Student
+from group.models import Group
 
 
 class StudentForm(ModelForm):
     class Meta:
         model = Student
         fields = ["first_name", "last_name"]
+
+    groups = forms.ModelMultipleChoiceField(
+        queryset=Group.objects.all(),
+        widget=forms.CheckboxSelectMultiple
+    )
 
     def clean_first_name(self):
         first_name = self.cleaned_data['first_name']
