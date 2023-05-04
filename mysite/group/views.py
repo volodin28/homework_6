@@ -1,5 +1,6 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
+from django.urls import reverse
 
 from .forms import GroupForm
 from .models import Group
@@ -10,7 +11,7 @@ def save_group(request):
         form = GroupForm(request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect('/group/groups')
+            return HttpResponseRedirect(reverse("groups-list"))
     else:
         form = GroupForm()
     return render(request, "index_group.html", {"form": form})
