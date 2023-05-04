@@ -24,7 +24,8 @@ def edit_student(request, id: int):
         form = StudentForm(request.POST, instance=student)
         if not form.is_valid():
             return HttpResponse("Form is not valid")
-        form.save()
+        form.save(commit=False)
+        form.save_m2m()
         return HttpResponseRedirect(reverse('student-list'))
 
 
