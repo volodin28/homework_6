@@ -24,8 +24,7 @@ def edit_student(request, id: int):
         form = StudentForm(request.POST, instance=student)
         if not form.is_valid():
             return HttpResponse("Form is not valid")
-        form.save(commit=False)
-        form.save_m2m()
+        form.save()
         return HttpResponseRedirect(reverse('student-list'))
 
 
@@ -34,3 +33,14 @@ def delete_student(request, id: int):
         student = Student.objects.get(id=id)
         student.delete()
         return HttpResponseRedirect(reverse('student-list'))
+
+
+def add_student(request):
+    if request.method == "POST":
+        form = StudentForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse("student-list"))
+    else:
+        form = StudentForm()
+    return render(request, "add_student.html", {"form": form})
