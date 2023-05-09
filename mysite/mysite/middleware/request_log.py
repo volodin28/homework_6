@@ -17,6 +17,6 @@ class RequestLogMiddleware:
         }
 
         with open("log.txt", "a") as f:
-            f.write(json.dumps(log_data))
+            f.write(json.dumps(log_data) + "\n")
 
         return response
